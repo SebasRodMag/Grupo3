@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="slider">
+            <button id="prev" class="nav-btn">&#10094;</button>
+            <div class="slides" id="slides">
+                <div class="slide"><img src="./img/photo1.png" alt="photo 1"></div>
+                <div class="slide"><img src="./img/photo2.png" alt="photo 2"></div>
+                <div class="slide"><img src="./img/photo3.png" alt="photo 3"></div>
+                <div class="slide"><img src="./img/photo4.png" alt="photo 4"></div>
+                <div class="slide"><img src="./img/photo5.png" alt="photo 5"></div>
+                <div class="slide"><img src="./img/photo6.png" alt="photo 6"></div>
+                <div class="slide"><img src="./img/photo7.png" alt="photo 7"></div>
+                <div class="slide"><img src="./img/photo8.png" alt="photo 8"></div>
+                <div class="slide"><img src="./img/photo9.png" alt="photo 9"></div>
+                <div class="slide"><img src="./img/photo10.png" alt="photo 10"></div>
+                <div class="slide"><img src="./img/photo11.png" alt="photo 11"></div>
+                <div class="slide"><img src="./img/photo12.png" alt="photo 12"></div>
+                <div class="slide"><img src="./img/photo13.png" alt="photo 13"></div>
+            </div>
+            <button id="next" class="nav-btn">&#10095;</button>
+        </div>
+    </div>
+    <script>
+        let index = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('prev').addEventListener('click', () => {
+            index = (index > 0) ? index - 1 : totalSlides - 1;
+            updateSlidePosition();
+        });
+
+        document.getElementById('next').addEventListener('click', () => {
+            index = (index < totalSlides - 1) ? index + 1 : 0;
+            updateSlidePosition();
+        });
+
+        function updateSlidePosition() {
+            document.getElementById('slides').style.transform = `translateX(-${index * 100}%)`;
+        }
+    </script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: sans-serif; background-image: url("./img/pop-bg.jpg");}
+        .wrapper { max-width: 1000px; margin: auto; overflow: hidden; position: relative; margin-top: 70px;}
+        .slider { position: relative; display: flex; align-items: center; }
+        .slides { display: flex; transition: transform 0.5s ease-in-out; }
+        .slide { min-width: 100%; }
+        .slide img { width: 100%; display: block; }
+        .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0, 0, 0, 0.5); color: white; border: none; cursor: pointer; padding: 10px; font-size: 24px; }
+        #prev { left: 10px; }
+        #next { right: 10px; }
+    </style>
+</body>
+</html>
